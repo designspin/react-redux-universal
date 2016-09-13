@@ -5,6 +5,10 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import routes from './shared/routes';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './shared/reducers';
+
 import api from './server/routes/api';
 
 import database from './server/db';
@@ -22,6 +26,7 @@ App.use('/api', api);
 App.use((req, res) => {
 
 	const location = req.url;
+	const store = createStore(reducer);
 
 	match({ routes, location }, (err, redirectLocation, renderProps) => {
 		if (err) {
@@ -33,8 +38,12 @@ App.use((req, res) => {
 		}
 
 		const InitialComponent = (
+		<Provider store={store}>
 			<RouterContext {...renderProps} />
+		</Provider>
 		);
+
+		const initialState = store.getState();
 
 		const componentHTML = renderToString(InitialComponent);
 
@@ -44,6 +53,9 @@ App.use((req, res) => {
 			<head>
 				<meta charset="utf-8">
 				<title>React Redux</title>
+				<script type="application/javascript">
+					window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+				</script>
 			</head>
 			<body>
 				<div id="app">${componentHTML}</div>
