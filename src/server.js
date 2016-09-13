@@ -1,8 +1,12 @@
 import express from 'express';
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import routes from './shared/routes';
+
+import api from './server/routes/api';
+
 import database from './server/db';
 
 require('dotenv').load();
@@ -12,6 +16,8 @@ const App = express();
 database();
 
 App.use(express.static('public'));
+
+App.use('/api', api);
 
 App.use((req, res) => {
 

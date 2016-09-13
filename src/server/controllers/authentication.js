@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../../shared/models/user');
 const jwtSimple = require('jwt-simple');
 const config = require('../config');
 const crypto = require('crypto');

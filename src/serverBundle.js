@@ -62,19 +62,25 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _db = __webpack_require__(168);
+	var _api = __webpack_require__(168);
+
+	var _api2 = _interopRequireDefault(_api);
+
+	var _db = __webpack_require__(183);
 
 	var _db2 = _interopRequireDefault(_db);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(170).load();
+	__webpack_require__(184).load();
 
 	var App = (0, _express2.default)();
 
 	(0, _db2.default)();
 
 	App.use(_express2.default.static('public'));
+
+	App.use('/api', _api2.default);
 
 	App.use(function (req, res) {
 
@@ -19923,23 +19929,369 @@
 
 	'use strict';
 
+	var express = __webpack_require__(1);
+	var router = express.Router();
+	var bodyParser = __webpack_require__(169);
+	var passport = __webpack_require__(170);
+	var Auth = __webpack_require__(171);
+	var passportService = __webpack_require__(180);
+
+	var requireAuth = passport.authenticate('jwt', { session: false });
+	var requireSignin = passport.authenticate('local', { session: false });
+
+	router.use(bodyParser.json({ type: '*/*' }));
+
+	router.post('/signin', requireSignin, Auth.signin);
+	router.post('/signup', Auth.signup);
+	router.post('/forgot', Auth.forgot);
+
+	module.exports = router;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports) {
+
+	module.exports = require("body-parser");
+
+/***/ },
+/* 170 */
+/***/ function(module, exports) {
+
+	module.exports = require("passport");
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var User = __webpack_require__(172);
+	var jwtSimple = __webpack_require__(175);
+	var config = __webpack_require__(176);
+	var crypto = __webpack_require__(177);
+	var mail = __webpack_require__(178);
+	var smtp = __webpack_require__(179);
+
+	function tokenForUser(user) {
+		var timestamp = new Date().getTime();
+		return jwtSimple.encode({
+			sub: user.id,
+			iat: timestamp
+		}, config.secret);
+	}
+
+	exports.forgot = function (req, res, next) {
+		crypto.randomBytes(20, function (err, buf) {
+			var token = buf.toString('hex');
+
+			User.findOne({ email: req.body.email }, function (err, user) {
+				if (err) {
+					return next(err);
+				}
+
+				if (!user) {
+					res.send({ error: 'No account with that email address exists' });
+				}
+
+				user.resetPasswordToken = token;
+				user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+				user.save(function (err) {
+					if (err) {
+						return next(err);
+					}
+
+					var smtpTransport = mail.createTransport(smtp({
+						host: config.authMailHost,
+						port: 587,
+						secure: false,
+						tls: {
+							rejectUnauthorized: false
+						},
+						auth: {
+							user: config.authEmailSend,
+							pass: config.authEmailPass
+						}
+					}));
+
+					var mailOptions = {
+						to: user.email,
+						from: 'noreply@demo.com',
+						subject: 'API Password reset',
+						text: 'You are receiving this email because you have requested a password reset on your account.\n\n' + 'Please click on the following link, or paste into your browser address bar to complete the process:\n\n' + 'http://' + req.headers.host + '/reset/' + token + '\n\n' + 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+					};
+
+					smtpTransport.sendMail(mailOptions, function (err) {
+						if (err) {
+							return next(err);
+						}
+
+						res.send({ success: 'An email has been sent to the email address, with reset instructions' });
+					});
+				});
+			});
+		});
+	};
+
+	//Post Method for signin
+	exports.signin = function (req, res, next) {
+		res.send({ token: tokenForUser(req.user) });
+	};
+
+	//Post Method for signup
+	exports.signup = function (req, res, next) {
+
+		var email = req.body.email;
+		var password = req.body.password;
+
+		if (!email || !password) {
+			return res.status(422).send({
+				error: "You must provide an email and a password to login"
+			});
+		}
+
+		User.findOne({ email: email }, function (err, existingUser) {
+
+			if (err) {
+				return next(err);
+			}
+			if (existingUser) {
+				return res.status(422).send({
+					error: "Email is already in use"
+				});
+			}
+			var user = new User({
+				email: email,
+				password: password
+			});
+
+			user.save(function (err) {
+				if (err) {
+					return next(err);
+				}
+				res.json({ token: tokenForUser(user) });
+			});
+		});
+	};
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var mongoose = __webpack_require__(173);
+	var bcrypt = __webpack_require__(174);
+	var Schema = mongoose.Schema;
+
+	var userSchema = new Schema({
+		email: {
+			type: String,
+			unique: true,
+			required: true
+		},
+		password: {
+			type: String
+		},
+		resetPasswordToken: {
+			type: String
+		},
+		resetPasswordExpires: {
+			type: String
+		}
+	});
+
+	userSchema.pre('save', function (next) {
+
+		var user = this;
+
+		bcrypt.genSalt(10, function (err, salt) {
+
+			if (err) {
+				return next(err);
+			}
+
+			bcrypt.hash(user.password, salt, null, function (err, hash) {
+				if (err) {
+					return next(err);
+				}
+
+				user.password = hash;
+
+				next();
+			});
+		});
+	});
+
+	userSchema.methods.comparePassword = function (candidatePassword, callback) {
+		bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+			if (err) {
+				return callback(err);
+			}
+			callback(null, isMatch);
+		});
+	};
+
+	var UserModel = mongoose.model('User', userSchema);
+
+	module.exports = UserModel;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports) {
+
+	module.exports = require("mongoose");
+
+/***/ },
+/* 174 */
+/***/ function(module, exports) {
+
+	module.exports = require("bcrypt-nodejs");
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	module.exports = require("jwt-simple");
+
+/***/ },
+/* 176 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+		secret: '#hsa23299187kjsldk$jf£o(i*:;eruoiweurm.xm',
+		authEmailSend: 'admin@designspin.co.uk',
+		authEmailPass: 'J^ckFxXN7',
+		authMailHost: 'mail.designspin.co.uk'
+	};
+
+/***/ },
+/* 177 */
+/***/ function(module, exports) {
+
+	module.exports = require("crypto");
+
+/***/ },
+/* 178 */
+/***/ function(module, exports) {
+
+	module.exports = require("nodemailer");
+
+/***/ },
+/* 179 */
+/***/ function(module, exports) {
+
+	module.exports = require("nodemailer-smtp-transport");
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _passport = __webpack_require__(170);
+
+	var _passport2 = _interopRequireDefault(_passport);
+
+	var _config = __webpack_require__(176);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	var _user = __webpack_require__(172);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	var _passportJwt = __webpack_require__(181);
+
+	var _passportLocal = __webpack_require__(182);
+
+	var _passportLocal2 = _interopRequireDefault(_passportLocal);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Create Local Strategy
+	var localOptions = { usernameField: 'email' };
+	var localLogin = new _passportLocal2.default(localOptions, function (email, password, done) {
+		_user2.default.findOne({ email: email }, function (err, user) {
+			if (err) {
+				return done(err);
+			}
+
+			if (!user) {
+				return done(null, false);
+			}
+			user.comparePassword(password, function (err, isMatch) {
+
+				if (err) {
+					return done(err);
+				}
+				if (!isMatch) {
+					return done(null, false);
+				}
+				return done(null, user);
+			});
+		});
+	});
+
+	//JWT Strategy
+	var jwtOptions = {
+		jwtFromRequest: _passportJwt.ExtractJwt.fromHeader('authorisation'),
+		secretOrKey: _config2.default.secret
+	};
+	var jwtLogin = new _passportJwt.Strategy(jwtOptions, function (payload, done) {
+		_user2.default.findById(payload.sub, function (err, user) {
+			if (err) {
+				return done(err, false);
+			}
+			if (user) {
+				done(null, user);
+			} else {
+				done(null, false);
+			}
+		});
+	});
+
+	_passport2.default.use(jwtLogin);
+	_passport2.default.use(localLogin);
+
+/***/ },
+/* 181 */
+/***/ function(module, exports) {
+
+	module.exports = require("passport-jwt");
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	module.exports = require("passport-local");
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
-	var _mongoose = __webpack_require__(169);
+	var _mongoose = __webpack_require__(173);
 
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(170).load();
+	__webpack_require__(184).load();
 
 	var CONNECTION = process.env.DB_CONNECTION_STRING;
 	var NAME = process.env.DB_NAME;
 
 	exports.default = function () {
-		_mongoose2.default.connect('' + CONNECTION + NAME);
+		_mongoose2.default.Promise = __webpack_require__(185);
+		_mongoose2.default.connect(CONNECTION + ':' + NAME + '/' + NAME);
 
 		var db = _mongoose2.default.connection;
 
@@ -19952,16 +20304,16 @@
 	};
 
 /***/ },
-/* 169 */
-/***/ function(module, exports) {
-
-	module.exports = require("mongoose");
-
-/***/ },
-/* 170 */
+/* 184 */
 /***/ function(module, exports) {
 
 	module.exports = require("dotenv");
+
+/***/ },
+/* 185 */
+/***/ function(module, exports) {
+
+	module.exports = require("bluebird");
 
 /***/ }
 /******/ ]);

@@ -5,7 +5,8 @@ const CONNECTION = process.env.DB_CONNECTION_STRING;
 const NAME = process.env.DB_NAME;
 
 export default () => {
-	mongoose.connect(`${CONNECTION}${NAME}`);
+	mongoose.Promise = require('bluebird');
+	mongoose.connect(`${CONNECTION}:${NAME}/${NAME}`);
 
 	const db = mongoose.connection;
 
