@@ -62,11 +62,17 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
+	var _db = __webpack_require__(168);
+
+	var _db2 = _interopRequireDefault(_db);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(168).load();
+	__webpack_require__(170).load();
 
 	var App = (0, _express2.default)();
+
+	(0, _db2.default)();
 
 	App.use(_express2.default.static('public'));
 
@@ -19913,6 +19919,46 @@
 
 /***/ },
 /* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _mongoose = __webpack_require__(169);
+
+	var _mongoose2 = _interopRequireDefault(_mongoose);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(170).load();
+
+	var CONNECTION = process.env.DB_CONNECTION_STRING;
+	var NAME = process.env.DB_NAME;
+
+	exports.default = function () {
+		_mongoose2.default.connect('' + CONNECTION + NAME);
+
+		var db = _mongoose2.default.connection;
+
+		db.on('error', console.error.bind(console, 'connection error:'));
+		db.once('open', function () {
+			console.log("Database connected.");
+		});
+
+		return db;
+	};
+
+/***/ },
+/* 169 */
+/***/ function(module, exports) {
+
+	module.exports = require("mongoose");
+
+/***/ },
+/* 170 */
 /***/ function(module, exports) {
 
 	module.exports = require("dotenv");
