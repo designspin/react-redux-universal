@@ -62,25 +62,25 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _redux = __webpack_require__(167);
+	var _redux = __webpack_require__(169);
 
-	var _reactRedux = __webpack_require__(168);
+	var _reactRedux = __webpack_require__(170);
 
-	var _reducers = __webpack_require__(174);
+	var _reducers = __webpack_require__(171);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _api = __webpack_require__(177);
+	var _api = __webpack_require__(176);
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _db = __webpack_require__(192);
+	var _db = __webpack_require__(191);
 
 	var _db2 = _interopRequireDefault(_db);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(193).load();
+	__webpack_require__(192).load();
 
 	var App = (0, _express2.default)();
 
@@ -19784,11 +19784,11 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _about = __webpack_require__(172);
+	var _about = __webpack_require__(167);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _home = __webpack_require__(173);
+	var _home = __webpack_require__(168);
 
 	var _home2 = _interopRequireDefault(_home);
 
@@ -19912,11 +19912,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _redux = __webpack_require__(167);
+	var _redux = __webpack_require__(169);
 
-	var _reactRedux = __webpack_require__(168);
+	var _reactRedux = __webpack_require__(170);
 
-	var _actions = __webpack_require__(169);
+	var _actions = __webpack_require__(194);
 
 	var actionCreators = _interopRequireWildcard(_actions);
 
@@ -19940,20 +19940,86 @@
 
 			_this.state = {
 				email: '',
-				password: ''
+				password: '',
+				modalOpen: false
 			};
-			console.log(_this.props);
 			return _this;
 		}
 
 		_createClass(LoginForm, [{
+			key: 'onEmailChange',
+			value: function onEmailChange(event) {
+				this.setState({ 'email': event.target.value });
+			}
+		}, {
+			key: 'onPasswordChange',
+			value: function onPasswordChange(event) {
+				this.setState({ 'password': event.target.value });
+			}
+		}, {
+			key: 'onFormSubmit',
+			value: function onFormSubmit(event) {
+				event.preventDefault();
+				this.props.actions.loginUser(this.state.email, this.state.password);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+
 				return _react2.default.createElement(
 					'div',
-					null,
-					'Authenticated: ',
-					this.props.isAuthenticated
+					{ className: 'login-form' },
+					function () {
+						if (_this2.props.isAuthenticated) {
+							return _react2.default.createElement(
+								'a',
+								null,
+								'Sign Out'
+							);
+						} else {
+							return _react2.default.createElement(
+								'div',
+								null,
+								_react2.default.createElement(
+									'a',
+									null,
+									'Sign In'
+								),
+								' |',
+								_react2.default.createElement(
+									'a',
+									null,
+									'Register'
+								)
+							);
+						}
+					}(),
+					_react2.default.createElement(
+						'div',
+						{ className: 'login-form-inner' },
+						_react2.default.createElement(
+							'form',
+							null,
+							_react2.default.createElement('input', {
+								placeholder: 'email',
+								type: 'email',
+								value: this.state.email,
+								onChange: this.onEmailChange.bind(this) }),
+							_react2.default.createElement('input', {
+								placeholder: 'password',
+								type: 'password',
+								value: this.state.password,
+								onChange: this.onPasswordChange.bind(this) }),
+							_react2.default.createElement(
+								'button',
+								{
+									type: 'submit',
+									onClick: this.onFormSubmit.bind(this) },
+								'Submit'
+							)
+						)
+					)
 				);
 			}
 		}]);
@@ -19979,18 +20045,6 @@
 
 /***/ },
 /* 167 */
-/***/ function(module, exports) {
-
-	module.exports = require("redux");
-
-/***/ },
-/* 168 */
-/***/ function(module, exports) {
-
-	module.exports = require("react-redux");
-
-/***/ },
-/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19998,77 +20052,146 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.loginUserSuccess = loginUserSuccess;
-	exports.loginUserFailure = loginUserFailure;
-	exports.loginUserRequest = loginUserRequest;
-	exports.logout = logout;
-	exports.loginUser = loginUser;
 
-	var _utils = __webpack_require__(170);
+	var _react = __webpack_require__(2);
 
-	var _constants = __webpack_require__(171);
+	var _react2 = _interopRequireDefault(_react);
 
-	function loginUserSuccess(token) {
-		return {
-			type: _constants.LOGIN_USER_SUCCESS,
-			payload: {
-				token: token
-			}
-		};
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function loginUserFailure(error) {
-		return {
-			type: _constants.LOGIN_USER_FAILURE,
-			payload: {
-				status: error.response.status,
-				statusText: error.response.statusText
-			}
-		};
-	}
+	var About = function About() {
+		return _react2.default.createElement(
+			'div',
+			null,
+			'About Page'
+		);
+	};
 
-	function loginUserRequest() {
-		return {
-			type: _constants.LOGIN_USER_REQUEST
-		};
-	}
+	exports.default = About;
 
-	function logout() {
-		return {
-			type: _constants.LOGOUT_USER
-		};
-	}
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
 
-	function loginUser(email, password) {
-		return function (dispatch) {
-			dispatch(loginUserRequest());
-			return fetch('http://localhost:3000/api/signin/', {
-				method: 'post',
-				credentials: 'include',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ email: email, password: password })
-			}).then(_utils.checkHttpStatus).then(_utils.parseJSON).then(function (response) {
-				try {
-					dispatch(loginUserSuccess(response.token));
-				} catch (e) {
-					dispatch(loginUserFailure({
-						response: {
-							status: 403,
-							statusText: 'Invalid Token'
-						}
-					}));
-				}
-			}).catch(function (error) {
-				dispatch(loginUserFailure(error));
-			});
-		};
-	}
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = function Home() {
+		return _react2.default.createElement(
+			'div',
+			null,
+			'Home Page'
+		);
+	};
+
+	exports.default = Home;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports) {
+
+	module.exports = require("redux");
 
 /***/ },
 /* 170 */
+/***/ function(module, exports) {
+
+	module.exports = require("react-redux");
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _redux = __webpack_require__(169);
+
+	var _reduxRouter = __webpack_require__(172);
+
+	var _auth = __webpack_require__(173);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _redux.combineReducers)({
+		auth: _auth2.default,
+		router: _reduxRouter.routerStateReducer
+	});
+
+/***/ },
+/* 172 */
+/***/ function(module, exports) {
+
+	module.exports = require("redux-router");
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createReducer;
+
+	var _utils = __webpack_require__(174);
+
+	var _constants = __webpack_require__(175);
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var initialState = {
+		token: null,
+		isAuthenticated: false,
+		isAuthenticating: false,
+		statusText: null
+	};
+
+	exports.default = (0, _utils.createReducer)(initialState, (_createReducer = {}, _defineProperty(_createReducer, _constants.LOGIN_USER_REQUEST, function (state, payload) {
+		return Object.assign({}, state, {
+			'isAuthenticating': true,
+			'statusText': null
+		});
+	}), _defineProperty(_createReducer, _constants.LOGIN_USER_SUCCESS, function (state, payload) {
+		return Object.assign({}, state, {
+			'isAuthenticating': false,
+			'isAuthenticated': true,
+			'token': payload.token,
+			'statusText': 'You have been logged in.'
+		});
+	}), _defineProperty(_createReducer, _constants.LOGIN_USER_FAILURE, function (state, payload) {
+		return Object.assign({}, state, {
+			'isAuthenticating': false,
+			'isAuthenticated': false,
+			'token': null,
+			'statusText': 'Authentcation Error: ' + payload.status + ' ' + payload.statusText
+		});
+	}), _defineProperty(_createReducer, _constants.LOGOUT_USER, function (state, payload) {
+		return Object.assign({}, state, {
+			'isAuthenticated': false,
+			'token': null,
+			'statusText': 'You have logged out.'
+		});
+	}), _createReducer));
+
+/***/ },
+/* 174 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20117,7 +20240,7 @@
 	}
 
 /***/ },
-/* 171 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20126,92 +20249,9 @@
 		value: true
 	});
 
-	var _utils = __webpack_require__(170);
+	var _utils = __webpack_require__(174);
 
 	exports.default = (0, _utils.createConstants)('LOGIN_USER_REQUEST', 'LOGIN_USER_FAILURE', 'LOGIN_USER_SUCCESS', 'LOGOUT_USER');
-
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var About = function About() {
-		return _react2.default.createElement(
-			'div',
-			null,
-			'About Page'
-		);
-	};
-
-	exports.default = About;
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Home = function Home() {
-		return _react2.default.createElement(
-			'div',
-			null,
-			'Home Page'
-		);
-	};
-
-	exports.default = Home;
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _redux = __webpack_require__(167);
-
-	var _reduxRouter = __webpack_require__(175);
-
-	var _auth = __webpack_require__(176);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = (0, _redux.combineReducers)({
-		auth: _auth2.default,
-		router: _reduxRouter.routerStateReducer
-	});
-
-/***/ },
-/* 175 */
-/***/ function(module, exports) {
-
-	module.exports = require("redux-router");
 
 /***/ },
 /* 176 */
@@ -20219,64 +20259,12 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createReducer;
-
-	var _utils = __webpack_require__(170);
-
-	var _constants = __webpack_require__(171);
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var initialState = {
-		token: null,
-		isAuthenticated: false,
-		isAuthenticating: false,
-		statusText: null
-	};
-
-	exports.default = (0, _utils.createReducer)(initialState, (_createReducer = {}, _defineProperty(_createReducer, _constants.LOGIN_USER_REQUEST, function (state, payload) {
-		return Object.assign({}, state, {
-			'isAuthenticating': true,
-			'statusText': null
-		});
-	}), _defineProperty(_createReducer, _constants.LOGIN_USER_SUCCESS, function (state, payload) {
-		return Object.assign({}, state, {
-			'isAuthenticating': false,
-			'isAuthenticated': true,
-			'token': payload.token,
-			'statusText': 'You have been logged in.'
-		});
-	}), _defineProperty(_createReducer, _constants.LOGIN_USER_FAILURE, function (state, payload) {
-		return Object.assign({}, state, {
-			'isAuthenticating': false,
-			'isAuthenticated': false,
-			'token': null,
-			'statusText': 'Authentcation Error: ' + payload.status + ' ' + payload.statusText
-		});
-	}), _defineProperty(_createReducer, _constants.LOGOUT_USER, function (state, payload) {
-		return Object.assign({}, state, {
-			'isAuthenticated': false,
-			'token': null,
-			'statusText': 'You have logged out.'
-		});
-	}), _createReducer));
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
 	var express = __webpack_require__(1);
 	var router = express.Router();
-	var bodyParser = __webpack_require__(178);
-	var passport = __webpack_require__(179);
-	var Auth = __webpack_require__(180);
-	var passportService = __webpack_require__(189);
+	var bodyParser = __webpack_require__(177);
+	var passport = __webpack_require__(178);
+	var Auth = __webpack_require__(179);
+	var passportService = __webpack_require__(188);
 
 	var requireAuth = passport.authenticate('jwt', { session: false });
 	var requireSignin = passport.authenticate('local', { session: false });
@@ -20290,29 +20278,29 @@
 	module.exports = router;
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport");
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var User = __webpack_require__(181);
-	var jwtSimple = __webpack_require__(184);
-	var config = __webpack_require__(185);
-	var crypto = __webpack_require__(186);
-	var mail = __webpack_require__(187);
-	var smtp = __webpack_require__(188);
+	var User = __webpack_require__(180);
+	var jwtSimple = __webpack_require__(183);
+	var config = __webpack_require__(184);
+	var crypto = __webpack_require__(185);
+	var mail = __webpack_require__(186);
+	var smtp = __webpack_require__(187);
 
 	function tokenForUser(user) {
 		var timestamp = new Date().getTime();
@@ -20417,13 +20405,13 @@
 	};
 
 /***/ },
-/* 181 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(182);
-	var bcrypt = __webpack_require__(183);
+	var mongoose = __webpack_require__(181);
+	var bcrypt = __webpack_require__(182);
 	var Schema = mongoose.Schema;
 
 	var userSchema = new Schema({
@@ -20479,25 +20467,25 @@
 	module.exports = UserModel;
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports) {
 
 	module.exports = require("bcrypt-nodejs");
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports) {
 
 	module.exports = require("jwt-simple");
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20510,44 +20498,44 @@
 	};
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = require("nodemailer");
 
 /***/ },
-/* 188 */
+/* 187 */
 /***/ function(module, exports) {
 
 	module.exports = require("nodemailer-smtp-transport");
 
 /***/ },
-/* 189 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _passport = __webpack_require__(179);
+	var _passport = __webpack_require__(178);
 
 	var _passport2 = _interopRequireDefault(_passport);
 
-	var _config = __webpack_require__(185);
+	var _config = __webpack_require__(184);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _user = __webpack_require__(181);
+	var _user = __webpack_require__(180);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _passportJwt = __webpack_require__(190);
+	var _passportJwt = __webpack_require__(189);
 
-	var _passportLocal = __webpack_require__(191);
+	var _passportLocal = __webpack_require__(190);
 
 	var _passportLocal2 = _interopRequireDefault(_passportLocal);
 
@@ -20599,19 +20587,19 @@
 	_passport2.default.use(localLogin);
 
 /***/ },
-/* 190 */
+/* 189 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport-jwt");
 
 /***/ },
-/* 191 */
+/* 190 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport-local");
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20620,19 +20608,19 @@
 		value: true
 	});
 
-	var _mongoose = __webpack_require__(182);
+	var _mongoose = __webpack_require__(181);
 
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(193).load();
+	__webpack_require__(192).load();
 
 	var CONNECTION = process.env.DB_CONNECTION_STRING;
 	var NAME = process.env.DB_NAME;
 
 	exports.default = function () {
-		_mongoose2.default.Promise = __webpack_require__(194);
+		_mongoose2.default.Promise = __webpack_require__(193);
 		_mongoose2.default.connect(CONNECTION + ':' + NAME + '/' + NAME);
 
 		var db = _mongoose2.default.connection;
@@ -20646,16 +20634,94 @@
 	};
 
 /***/ },
-/* 193 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = require("dotenv");
 
 /***/ },
-/* 194 */
+/* 193 */
 /***/ function(module, exports) {
 
 	module.exports = require("bluebird");
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loginUserSuccess = loginUserSuccess;
+	exports.loginUserFailure = loginUserFailure;
+	exports.loginUserRequest = loginUserRequest;
+	exports.logout = logout;
+	exports.loginUser = loginUser;
+
+	var _utils = __webpack_require__(174);
+
+	var _constants = __webpack_require__(175);
+
+	function loginUserSuccess(token) {
+		return {
+			type: _constants.LOGIN_USER_SUCCESS,
+			payload: {
+				token: token
+			}
+		};
+	}
+
+	function loginUserFailure(error) {
+		return {
+			type: _constants.LOGIN_USER_FAILURE,
+			payload: {
+				status: error.response.status,
+				statusText: error.response.statusText
+			}
+		};
+	}
+
+	function loginUserRequest() {
+		return {
+			type: _constants.LOGIN_USER_REQUEST
+		};
+	}
+
+	function logout() {
+		return {
+			type: _constants.LOGOUT_USER
+		};
+	}
+
+	function loginUser(email, password) {
+		return function (dispatch) {
+			dispatch(loginUserRequest());
+			return fetch('http://localhost:3000/api/signin/', {
+				method: 'post',
+				credentials: 'include',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email: email, password: password })
+			}).then(_utils.checkHttpStatus).then(_utils.parseJSON).then(function (response) {
+				try {
+					dispatch(loginUserSuccess(response.token));
+				} catch (e) {
+					dispatch(loginUserFailure({
+						response: {
+							status: 403,
+							statusText: 'Invalid Token'
+						}
+					}));
+				}
+			}).catch(function (error) {
+				dispatch(loginUserFailure(error));
+			});
+		};
+	}
 
 /***/ }
 /******/ ]);
