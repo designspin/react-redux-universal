@@ -1,5 +1,6 @@
 import { checkHttpStatus, parseJSON } from '../utils';
 import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } from '../constants';
+import axios from 'axios';
 
 export function loginUserSuccess(token) {
 	return {
@@ -11,7 +12,6 @@ export function loginUserSuccess(token) {
 }
 
 export function loginUserFailure(error) {
-	console.log("LOGIN_USER_FAILURE");
 	return {
 		type: LOGIN_USER_FAILURE,
 		payload: {
@@ -34,11 +34,8 @@ export function logout() {
 } 
 
 export function loginUser(email, password) {
-	email = 'admin@designspin.co.uk';
-	password = 'hannah01abcd';
-
-	return function(dispatch) {
-		dispatch(loginUserRequest());
+	return (dispatch) => {
+		dispatch(loginUserRequest())
 		return fetch('http://localhost:3000/api/signin', {
 			method: 'post',
 			headers: {

@@ -12,8 +12,6 @@ export class LoginForm extends Component {
 			password: '',
 			modalOpen: false
 		}
-
-		console.log(this.props.actions.loginUser);
 	}
 
 	onEmailChange(event) {

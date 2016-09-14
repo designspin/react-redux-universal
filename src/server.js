@@ -51,8 +51,9 @@ App.use((req, res) => {
 		<!DOCTYPE html>
 		<html>
 			<head>
-				<meta charset="utf-8">
 				<title>React Redux</title>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<script type="application/javascript">
 					window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
 				</script>

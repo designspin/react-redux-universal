@@ -114,7 +114,7 @@
 
 			var componentHTML = (0, _server.renderToString)(InitialComponent);
 
-			var HTML = '\n\t\t<!DOCTYPE html>\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<meta charset="utf-8">\n\t\t\t\t<title>React Redux</title>\n\t\t\t\t<script type="application/javascript">\n\t\t\t\t\twindow.__INITIAL_STATE__ = ' + JSON.stringify(initialState) + '\n\t\t\t\t</script>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<div id="app">' + componentHTML + '</div>\n\t\t\t\t<script type="application/javascript" src="app.js"></script>\n\t\t\t</body>\n\t\t</html>\n\t\t';
+			var HTML = '\n\t\t<!DOCTYPE html>\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<title>React Redux</title>\n\t\t\t\t<meta charset="utf-8">\n\t\t\t\t<meta name="viewport" content="width=device-width, initial-scale=1">\n\t\t\t\t<script type="application/javascript">\n\t\t\t\t\twindow.__INITIAL_STATE__ = ' + JSON.stringify(initialState) + '\n\t\t\t\t</script>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<div id="app">' + componentHTML + '</div>\n\t\t\t\t<script type="application/javascript" src="app.js"></script>\n\t\t\t</body>\n\t\t</html>\n\t\t';
 
 			res.end(HTML);
 		});
@@ -19943,8 +19943,6 @@
 				password: '',
 				modalOpen: false
 			};
-
-			console.log(_this.props.actions.loginUser);
 			return _this;
 		}
 
@@ -20076,6 +20074,12 @@
 
 	var _constants = __webpack_require__(171);
 
+	var _axios = __webpack_require__(172);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function loginUserSuccess(token) {
 		return {
 			type: _constants.LOGIN_USER_SUCCESS,
@@ -20086,7 +20090,6 @@
 	}
 
 	function loginUserFailure(error) {
-		console.log("LOGIN_USER_FAILURE");
 		return {
 			type: _constants.LOGIN_USER_FAILURE,
 			payload: {
@@ -20109,9 +20112,6 @@
 	}
 
 	function loginUser(email, password) {
-		email = 'admin@designspin.co.uk';
-		password = 'hannah01abcd';
-
 		return function (dispatch) {
 			dispatch(loginUserRequest());
 			return fetch('http://localhost:3000/api/signin', {
@@ -20189,20 +20189,26 @@
 
 /***/ },
 /* 171 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
-
-	var _utils = __webpack_require__(170);
-
-	exports.default = (0, _utils.createConstants)('LOGIN_USER_REQUEST', 'LOGIN_USER_FAILURE', 'LOGIN_USER_SUCCESS', 'LOGOUT_USER');
+	/* auth CONSTANTS */
+	var LOGIN_USER_REQUEST = exports.LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
+	var LOGIN_USER_FAILURE = exports.LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
+	var LOGIN_USER_SUCCESS = exports.LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+	var LOGOUT_USER = exports.LOGOUT_USER = 'LOGOUT_USER';
 
 /***/ },
-/* 172 */,
+/* 172 */
+/***/ function(module, exports) {
+
+	module.exports = require("axios");
+
+/***/ },
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 

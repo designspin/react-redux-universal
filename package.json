@@ -40,7 +40,11 @@
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "css-loader": "^0.25.0",
+    "isomorphic-style-loader": "^1.0.0",
     "nodemon": "^1.10.2",
-    "parallelshell": "^2.0.0"
+    "parallelshell": "^2.0.0",
+    "precss": "^1.4.0",
+    "webpack-dev-server": "^1.15.2"
   }
 }
