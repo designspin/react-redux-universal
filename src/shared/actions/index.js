@@ -11,6 +11,7 @@ export function loginUserSuccess(token) {
 }
 
 export function loginUserFailure(error) {
+	console.log("LOGIN_USER_FAILURE");
 	return {
 		type: LOGIN_USER_FAILURE,
 		payload: {
@@ -22,26 +23,28 @@ export function loginUserFailure(error) {
 
 export function loginUserRequest() {
 	return {
-		type: LOGIN_USER_REQUEST
+		type: LOGIN_USER_REQUEST,
 	}
 }
 
 export function logout() {
 	return { 
-		type: LOGOUT_USER
+		type: LOGOUT_USER,
 	}
 } 
 
 export function loginUser(email, password) {
+	email = 'admin@designspin.co.uk';
+	password = 'hannah01abcd';
+
 	return function(dispatch) {
 		dispatch(loginUserRequest());
-		return fetch('http://localhost:3000/api/signin/', {
+		return fetch('http://localhost:3000/api/signin', {
 			method: 'post',
-			credentials: 'include',
 			headers: {
 				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
+        'Content-Type': 'application/json'
+      },
 			body: JSON.stringify({ email: email, password: password })
 		})
 		.then(checkHttpStatus)
@@ -49,7 +52,7 @@ export function loginUser(email, password) {
 		.then(response => {
 			try {
 				dispatch(loginUserSuccess(response.token))
-			} catch (e) {
+			} catch (error) {
 				dispatch(loginUserFailure({
 					response: {
 						status: 403,

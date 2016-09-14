@@ -12,6 +12,8 @@ export class LoginForm extends Component {
 			password: '',
 			modalOpen: false
 		}
+
+		console.log(this.props.actions.loginUser);
 	}
 
 	onEmailChange(event) {
@@ -38,8 +40,7 @@ export class LoginForm extends Component {
 					} else {
 						return (
 							<div>
-								<a>Sign In</a> | 
-								<a>Register</a>
+								<a>Sign In</a> | <a>Register</a>
 							</div>
 						)
 					}
