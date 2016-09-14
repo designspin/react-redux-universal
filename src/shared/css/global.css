@@ -1,0 +1,5 @@
+$grey: #eee;
+
+body {
+	background-color: $grey;
+}

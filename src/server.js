@@ -5,6 +5,8 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import routes from './shared/routes';
 
+import { renderStyles } from './shared/utils/styleCollection';
+
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './shared/reducers';
@@ -44,8 +46,9 @@ App.use((req, res) => {
 		);
 
 		const initialState = store.getState();
-
 		const componentHTML = renderToString(InitialComponent);
+
+		const styles = renderStyles();
 
 		const HTML = `
 		<!DOCTYPE html>
@@ -57,6 +60,7 @@ App.use((req, res) => {
 				<script type="application/javascript">
 					window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
 				</script>
+				<style id="server-styles">${styles}</style>
 			</head>
 			<body>
 				<div id="app">${componentHTML}</div>
