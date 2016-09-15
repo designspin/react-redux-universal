@@ -35,7 +35,7 @@ export class LoginForm extends Component {
 
 	onFormSubmit(event) {
 		event.preventDefault();
-		this.props.actions.loginUser(this.state.email, this.state.password);
+		this.props.actions.loginUser(this.state.email, this.state.password, this.state.register);
 	}
 
 	onSignInClick() {
@@ -44,8 +44,16 @@ export class LoginForm extends Component {
 	}
 
 	onSignOutClick() {
-
+		
 	}
+
+	onCloseClick() {
+		this.setState({'email': ''});
+		this.setState({'password': ''});
+		this.setState({ modalOpen: false });
+		this.props.actions.clearErrors();
+	}
+
 
 	onRegisterClick() {
 		this.setState({ modalOpen: true });
@@ -62,14 +70,23 @@ export class LoginForm extends Component {
 							<span className="form-actions"><a onClick={ this.onSignOutClick.bind(this) }>Sign Out</a></span>
 						) 
 					} else {
-						return (
-							<span className="form-actions">
-								<a onClick={ this.onSignInClick.bind(this) }>Sign In</a> | <a onClick={ this.onRegisterClick.bind(this) }>Register</a>
-							</span>
-						)
+						if(!this.state.modalOpen) {
+							return (
+								<span className="form-actions">
+									<a onClick={ this.onSignInClick.bind(this) }>Sign In</a> | <a onClick={ this.onRegisterClick.bind(this) }>Register</a>
+								</span>
+							)
+						} else {
+							return (
+								<span className="form-actions">
+									<a onClick={ this.onCloseClick.bind(this)}>Close [x]</a>
+								</span>
+							)
+						}
 					}
 				})()}
-				<div className={"login-form-inner" + ((this.state.modalOpen) ? ' open' : '')}>
+				<div className={"login-form-inner" + ((this.state.modalOpen && !this.props.isAuthenticated) ? ' open' : '')}>
+					{(this.props.statusText) ? <p className="error">{this.props.statusText}</p> : ''}
 					<form>
 					{(this.props.isAuthenticating) ? <div className="loading"></div> : ''}
 						<input 

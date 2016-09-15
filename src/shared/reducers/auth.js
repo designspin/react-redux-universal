@@ -1,5 +1,5 @@
 import { createReducer } from '../utils';
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } from '../constants';
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER, CLEAR_STATUS_TEXT } from '../constants';
 
 const initialState = {
 	token: null,
@@ -36,6 +36,11 @@ export default createReducer(initialState, {
 			'isAuthenticated': false,
 			'token': null,
 			'statusText': 'You have logged out.'
+		});
+	},
+	[CLEAR_STATUS_TEXT]: (state, payload) => {
+		return Object.assign({}, state, {
+			'statusText': null
 		});
 	}
 });

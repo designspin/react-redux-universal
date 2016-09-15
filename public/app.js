@@ -98,11 +98,11 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jasonfoster/universal-react/react-redux-universal/src/client-render.js');
+		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jason/react-redux-universal/src/client-render.js');
 
-		__REACT_HOT_LOADER__.register(store, 'store', '/Users/jasonfoster/universal-react/react-redux-universal/src/client-render.js');
+		__REACT_HOT_LOADER__.register(store, 'store', '/Users/jason/react-redux-universal/src/client-render.js');
 
-		__REACT_HOT_LOADER__.register(styles, 'styles', '/Users/jasonfoster/universal-react/react-redux-universal/src/client-render.js');
+		__REACT_HOT_LOADER__.register(styles, 'styles', '/Users/jason/react-redux-universal/src/client-render.js');
 	})();
 
 	;
@@ -21527,7 +21527,7 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/routes.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/routes.js');
 	})();
 
 	;
@@ -24145,8 +24145,6 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _Actions = __webpack_require__(186);
-
 	var _computeChangedRoutes2 = __webpack_require__(204);
 
 	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
@@ -24193,10 +24191,6 @@
 	    }
 
 	    return (0, _isActive3.default)(location, indexOnly, state.location, state.routes, state.params);
-	  }
-
-	  function createLocationFromRedirectInfo(location) {
-	    return history.createLocation(location, _Actions.REPLACE);
 	  }
 
 	  var partialNextState = void 0;
@@ -24256,7 +24250,7 @@
 	    }
 
 	    function handleErrorOrRedirect(error, redirectInfo) {
-	      if (error) callback(error);else callback(null, createLocationFromRedirectInfo(redirectInfo));
+	      if (error) callback(error);else callback(null, redirectInfo);
 	    }
 	  }
 
@@ -26407,6 +26401,8 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _Actions = __webpack_require__(186);
+
 	var _invariant = __webpack_require__(182);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
@@ -26465,7 +26461,7 @@
 	  history = (0, _RouterUtils.createRoutingHistory)(history, transitionManager);
 
 	  transitionManager.match(location, function (error, redirectLocation, nextState) {
-	    callback(error, redirectLocation, nextState && _extends({}, nextState, {
+	    callback(error, redirectLocation && router.createLocation(redirectLocation, _Actions.REPLACE), nextState && _extends({}, nextState, {
 	      history: history,
 	      router: router,
 	      matchContext: { history: history, transitionManager: transitionManager, router: router }
@@ -27251,7 +27247,7 @@
 					_react2.default.createElement(
 						'h1',
 						null,
-						'Welcome to my universal'
+						'Title Here'
 					),
 					this.props.children
 				);
@@ -27270,9 +27266,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/app/app.js');
+		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jason/react-redux-universal/src/shared/components/app/app.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/app/app.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/app/app.js');
 	})();
 
 	;
@@ -27412,9 +27408,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(Header, 'Header', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/header.js');
+		__REACT_HOT_LOADER__.register(Header, 'Header', '/Users/jason/react-redux-universal/src/shared/components/header/header.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/header.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/header/header.js');
 	})();
 
 	;
@@ -27450,13 +27446,13 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(collectOrRender, 'collectOrRender', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(collectOrRender, 'collectOrRender', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(renderStyles, 'renderStyles', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(renderStyles, 'renderStyles', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(hasDOM, 'hasDOM', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(hasDOM, 'hasDOM', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(css, 'css', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(css, 'css', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
 	})();
 
 	;
@@ -28806,7 +28802,7 @@
 			key: 'onFormSubmit',
 			value: function onFormSubmit(event) {
 				event.preventDefault();
-				this.props.actions.loginUser(this.state.email, this.state.password);
+				this.props.actions.loginUser(this.state.email, this.state.password, this.state.register);
 			}
 		}, {
 			key: 'onSignInClick',
@@ -28817,6 +28813,14 @@
 		}, {
 			key: 'onSignOutClick',
 			value: function onSignOutClick() {}
+		}, {
+			key: 'onCloseClick',
+			value: function onCloseClick() {
+				this.setState({ 'email': '' });
+				this.setState({ 'password': '' });
+				this.setState({ modalOpen: false });
+				this.props.actions.clearErrors();
+			}
 		}, {
 			key: 'onRegisterClick',
 			value: function onRegisterClick() {
@@ -28843,26 +28847,43 @@
 								)
 							);
 						} else {
-							return _react2.default.createElement(
-								'span',
-								{ className: 'form-actions' },
-								_react2.default.createElement(
-									'a',
-									{ onClick: _this2.onSignInClick.bind(_this2) },
-									'Sign In'
-								),
-								' | ',
-								_react2.default.createElement(
-									'a',
-									{ onClick: _this2.onRegisterClick.bind(_this2) },
-									'Register'
-								)
-							);
+							if (!_this2.state.modalOpen) {
+								return _react2.default.createElement(
+									'span',
+									{ className: 'form-actions' },
+									_react2.default.createElement(
+										'a',
+										{ onClick: _this2.onSignInClick.bind(_this2) },
+										'Sign In'
+									),
+									' | ',
+									_react2.default.createElement(
+										'a',
+										{ onClick: _this2.onRegisterClick.bind(_this2) },
+										'Register'
+									)
+								);
+							} else {
+								return _react2.default.createElement(
+									'span',
+									{ className: 'form-actions' },
+									_react2.default.createElement(
+										'a',
+										{ onClick: _this2.onCloseClick.bind(_this2) },
+										'Close [x]'
+									)
+								);
+							}
 						}
 					}(),
 					_react2.default.createElement(
 						'div',
-						{ className: "login-form-inner" + (this.state.modalOpen ? ' open' : '') },
+						{ className: "login-form-inner" + (this.state.modalOpen && !this.props.isAuthenticated ? ' open' : '') },
+						this.props.statusText ? _react2.default.createElement(
+							'p',
+							{ className: 'error' },
+							this.props.statusText
+						) : '',
 						_react2.default.createElement(
 							'form',
 							null,
@@ -28917,13 +28938,13 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(LoginForm, 'LoginForm', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(LoginForm, 'LoginForm', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
 	})();
 
 	;
@@ -30430,6 +30451,8 @@
 	exports.loginUserFailure = loginUserFailure;
 	exports.loginUserRequest = loginUserRequest;
 	exports.logout = logout;
+	exports.clearStatusText = clearStatusText;
+	exports.clearErrors = clearErrors;
 	exports.loginUser = loginUser;
 
 	var _utils = __webpack_require__(333);
@@ -30473,10 +30496,30 @@
 		};
 	}
 
-	function loginUser(email, password) {
+	function clearStatusText() {
+		return {
+			type: _constants.CLEAR_STATUS_TEXT
+		};
+	}
+
+	function clearErrors() {
+		return function (dispatch) {
+			dispatch(clearStatusText());
+		};
+	}
+
+	function loginUser(email, password, register) {
+		var requestURL = '';
+
+		if (!register) {
+			requestURL = 'http://localhost:3000/api/signin';
+		} else {
+			requestURL = 'http://localhost:3000/api/signup';
+		}
+
 		return function (dispatch) {
 			dispatch(loginUserRequest());
-			return fetch('http://localhost:3000/api/signin', {
+			return fetch(requestURL, {
 				method: 'post',
 				headers: {
 					'Accept': 'application/json',
@@ -30506,15 +30549,19 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(loginUserSuccess, 'loginUserSuccess', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserSuccess, 'loginUserSuccess', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUserFailure, 'loginUserFailure', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserFailure, 'loginUserFailure', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUserRequest, 'loginUserRequest', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserRequest, 'loginUserRequest', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(logout, 'logout', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(logout, 'logout', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUser, 'loginUser', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(clearStatusText, 'clearStatusText', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+
+		__REACT_HOT_LOADER__.register(clearErrors, 'clearErrors', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+
+		__REACT_HOT_LOADER__.register(loginUser, 'loginUser', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
 	})();
 
 	;
@@ -30574,13 +30621,13 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(createConstants, "createConstants", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(createConstants, "createConstants", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(createReducer, "createReducer", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(createReducer, "createReducer", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(checkHttpStatus, "checkHttpStatus", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(checkHttpStatus, "checkHttpStatus", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(parseJSON, "parseJSON", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(parseJSON, "parseJSON", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
 	})();
 
 	;
@@ -30599,6 +30646,7 @@
 	var LOGIN_USER_FAILURE = exports.LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 	var LOGIN_USER_SUCCESS = exports.LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 	var LOGOUT_USER = exports.LOGOUT_USER = 'LOGOUT_USER';
+	var CLEAR_STATUS_TEXT = exports.CLEAR_STATUS_TEXT = 'CLEAR_STATUS_TEXT';
 	;
 
 	(function () {
@@ -30606,13 +30654,15 @@
 	    return;
 	  }
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_REQUEST, 'LOGIN_USER_REQUEST', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_REQUEST, 'LOGIN_USER_REQUEST', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_FAILURE, 'LOGIN_USER_FAILURE', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_FAILURE, 'LOGIN_USER_FAILURE', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_SUCCESS, 'LOGIN_USER_SUCCESS', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_SUCCESS, 'LOGIN_USER_SUCCESS', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGOUT_USER, 'LOGOUT_USER', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGOUT_USER, 'LOGOUT_USER', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+
+	  __REACT_HOT_LOADER__.register(CLEAR_STATUS_TEXT, 'CLEAR_STATUS_TEXT', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
 	})();
 
 	;
@@ -31987,7 +32037,7 @@
 
 
 	// module
-	exports.push([module.id, ".login-form{position:relative;margin-left:auto;font-size:1rem}.login-form-inner{position:absolute;display:none;right:0;top:0;padding:64px 0 0}.login-form-inner form{background-color:#fff;padding:1rem}.login-form-inner.open{display:block}.login-form .form-actions{display:inline-block;line-height:64px}.login-form .form-actions a{display:inline-block;cursor:pointer;padding:0 .5rem;line-height:44px}.login-form .form-actions a:hover{background-color:hsla(0,0%,100%,.3)}.login-form input{padding:.2rem;margin-bottom:1rem;max-width:100%}::input-placeholder{font-size:.2rem}.login-form button{width:100%;height:auto;padding:.5rem 2rem;border:1px solid $ds-grey;color:#fff;background-color:#445366}.login-form .loading{position:absolute;top:64px;right:0;bottom:0;left:0;background:#fff url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%27120px%27%20height%3D%27120px%27%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20class%3D%22uil-ring-alt%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22none%22%20class%3D%22bk%22%3E%3C%2Frect%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23445366%22%20fill%3D%22none%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23e0f3fa%22%20fill%3D%22none%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%3E%3Canimate%20attributeName%3D%22stroke-dashoffset%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20from%3D%220%22%20to%3D%22502%22%3E%3C%2Fanimate%3E%3Canimate%20attributeName%3D%22stroke-dasharray%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20values%3D%22150.6%20100.4%3B1%20250%3B150.6%20100.4%22%3E%3C%2Fanimate%3E%3C%2Fcircle%3E%3C%2Fsvg%3E') no-repeat 50%;background-size:60px 60px}", ""]);
+	exports.push([module.id, ".login-form{position:relative;margin-left:auto;font-size:1rem}.login-form-inner{position:absolute;display:none;right:0;top:64px;padding:1rem;background-color:#fff}.login-form-inner.open{display:block}.login-form .form-actions{display:inline-block;line-height:64px}.login-form .form-actions a{display:inline-block;cursor:pointer;padding:0 .5rem;line-height:44px}.login-form .form-actions a:hover{background-color:hsla(0,0%,100%,.3)}.login-form input{padding:.2rem;margin-bottom:1rem;max-width:100%}::input-placeholder{font-size:.2rem}.login-form button{width:100%;height:auto;padding:.5rem 2rem;border:1px solid $ds-grey;color:#fff;background-color:#445366}.login-form .loading{position:absolute;top:0;right:0;bottom:0;left:0;background:#fff url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%27120px%27%20height%3D%27120px%27%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20class%3D%22uil-ring-alt%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22none%22%20class%3D%22bk%22%3E%3C%2Frect%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23445366%22%20fill%3D%22none%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23e0f3fa%22%20fill%3D%22none%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%3E%3Canimate%20attributeName%3D%22stroke-dashoffset%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20from%3D%220%22%20to%3D%22502%22%3E%3C%2Fanimate%3E%3Canimate%20attributeName%3D%22stroke-dasharray%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20values%3D%22150.6%20100.4%3B1%20250%3B150.6%20100.4%22%3E%3C%2Fanimate%3E%3C%2Fcircle%3E%3C%2Fsvg%3E') no-repeat 50%;background-size:60px 60px}.login-form .error{color:red;background-color:rgba(255,0,0,.1);border:1px solid red;margin:.5rem 0;padding:.5rem;font-size:12px}", ""]);
 
 	// exports
 
@@ -32056,9 +32106,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(About, 'About', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/about/about.js');
+		__REACT_HOT_LOADER__.register(About, 'About', '/Users/jason/react-redux-universal/src/shared/components/about/about.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/about/about.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/about/about.js');
 	})();
 
 	;
@@ -32096,9 +32146,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(Home, 'Home', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/home/home.js');
+		__REACT_HOT_LOADER__.register(Home, 'Home', '/Users/jason/react-redux-universal/src/shared/components/home/home.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/home/home.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/home/home.js');
 	})();
 
 	;
@@ -32137,9 +32187,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(rootReducer, 'rootReducer', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/index.js');
+		__REACT_HOT_LOADER__.register(rootReducer, 'rootReducer', '/Users/jason/react-redux-universal/src/shared/reducers/index.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/index.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/reducers/index.js');
 	})();
 
 	;
@@ -32977,6 +33027,10 @@
 			'token': null,
 			'statusText': 'You have logged out.'
 		});
+	}), _defineProperty(_createReducer, _constants.CLEAR_STATUS_TEXT, function (state, payload) {
+		return Object.assign({}, state, {
+			'statusText': null
+		});
 	}), _createReducer));
 
 	exports.default = _default;
@@ -32987,9 +33041,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/auth.js');
+		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jason/react-redux-universal/src/shared/reducers/auth.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/auth.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/reducers/auth.js');
 	})();
 
 	;

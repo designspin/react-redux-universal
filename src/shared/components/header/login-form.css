@@ -10,13 +10,13 @@
 	position: absolute;
 	display: none;
 	right: 0;
-	top: 0;
-	padding: 64px 0 0 0;
+	top: 64px;
+	padding: 1rem;
+	background-color: $ds-white;
 }
 
 .login-form-inner form {
-	background-color: $ds-white;
-	padding: 1rem;
+	
 }
 
 .login-form-inner.open {
@@ -60,8 +60,17 @@
 
 .login-form .loading {
 	position: absolute;
-	top:64px; right:0; bottom:0; left:0;
+	top:0; right:0; bottom:0; left:0;
 	
 	background: #fff url('data:image/svg+xml;charset=UTF-8,$ajax-loader') no-repeat center center;
 	background-size: 60px 60px;
+}
+
+.login-form .error {
+	color: red;
+	background-color: rgba(255,0,0,0.1);
+	border: 1px solid red;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+	font-size: 12px;
 }

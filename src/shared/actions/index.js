@@ -1,5 +1,5 @@
 import { checkHttpStatus, parseJSON } from '../utils';
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } from '../constants';
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER, CLEAR_STATUS_TEXT } from '../constants';
 import axios from 'axios';
 
 export function loginUserSuccess(token) {
@@ -31,12 +31,32 @@ export function logout() {
 	return { 
 		type: LOGOUT_USER,
 	}
+}
+
+export function clearStatusText() {
+	return {
+		type: CLEAR_STATUS_TEXT,
+	}
 } 
 
-export function loginUser(email, password) {
+export function clearErrors() {
+	return(dispatch) => {
+		dispatch(clearStatusText());
+	}
+}
+
+export function loginUser(email, password, register) {
+	let requestURL = '';
+
+	if(!register) {
+		requestURL = 'http://localhost:3000/api/signin';
+	} else {
+		requestURL = 'http://localhost:3000/api/signup';
+	}
+
 	return (dispatch) => {
 		dispatch(loginUserRequest())
-		return fetch('http://localhost:3000/api/signin', {
+		return fetch(requestURL, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
