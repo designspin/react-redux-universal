@@ -16,9 +16,10 @@ export default class App extends Component {
 		return (
 			<div>
 				<Header />
-				<h1>Welcome to my app</h1>
+				<h1>Welcome to my universal</h1>
 				{this.props.children}
 			</div>
 		)
 	}
 }
+

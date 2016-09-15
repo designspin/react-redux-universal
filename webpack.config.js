@@ -2,6 +2,8 @@ require('dotenv').config();
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var cssnano = require('cssnano');
+
 var ROOT_PATH = path.resolve(__dirname, 'src');
 var BUILD_PATH = path.resolve(ROOT_PATH, '../public');
 
@@ -15,7 +17,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.jsx?$/, // test for js and jsx files only
-				loader: 'babel',
+				loader: ['babel'],
 				exclude: /node_modules/,
 				query: {
 					"presets": ["es2015", "react"],
@@ -34,7 +36,7 @@ module.exports = {
 		]
 	},
 	postcss: function() {
-		return [autoprefixer({browsers: ['last 2 versions']}), precss];
+		return [autoprefixer({browsers: ['last 2 versions']}), precss, cssnano];
 	},
 	plugins: []
 }

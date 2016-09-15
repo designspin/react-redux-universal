@@ -10,10 +10,13 @@ let initialState = window.__INITIAL_STATE_;
 
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
+
 let styles = document.getElementById('server-styles');
 styles.parentNode.removeChild(styles);
+
 
 ReactDOM.render(
 <Provider store={store}>
 	{routes}
-</Provider>, document.getElementById('app'));
+</Provider>, document.getElementById('app')
+);

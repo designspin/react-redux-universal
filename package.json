@@ -27,6 +27,7 @@
     "mongoose": "^4.6.0",
     "nodemailer": "^2.6.0",
     "nodemailer-smtp-transport": "^2.7.2",
+    "normalize.css": "^4.2.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
     "passport-local": "^1.0.0",
@@ -41,11 +42,19 @@
   },
   "devDependencies": {
     "css-loader": "^0.25.0",
+    "cssnano": "^3.7.4",
     "isomorphic-style-loader": "^1.0.0",
     "nodemon": "^1.10.2",
     "parallelshell": "^2.0.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
-    "webpack-dev-server": "^1.15.2"
+    "react-hot-loader": "^3.0.0-beta.4",
+    "webpack-dev-server": "^1.15.2",
+    "webpack-livereload-plugin": "^0.8.2"
+  },
+  "babel": {
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
   }
 }

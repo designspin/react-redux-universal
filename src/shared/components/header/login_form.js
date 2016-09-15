@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions';
+import { collectOrRender } from '../../utils/styleCollection';
+import styles from './login-form.css';
 
 export class LoginForm extends Component {
 	constructor(props) {
@@ -10,9 +12,18 @@ export class LoginForm extends Component {
 		this.state = {
 			email: '',
 			password: '',
+			register: false,
 			modalOpen: false
 		}
 	}
+
+	componentWillMount() {
+		this.removeStyles = collectOrRender(styles);
+	};
+
+	componentWillUnmount() {
+		this.removeStyles();
+	};
 
 	onEmailChange(event) {
 		this.setState({'email': event.target.value});
@@ -27,24 +38,40 @@ export class LoginForm extends Component {
 		this.props.actions.loginUser(this.state.email, this.state.password);
 	}
 
+	onSignInClick() {
+		this.setState({ modalOpen: true });
+		this.setState({ register: false });
+	}
+
+	onSignOutClick() {
+
+	}
+
+	onRegisterClick() {
+		this.setState({ modalOpen: true });
+		this.setState({ register: true });
+	}
+
 	render() {
 		return (
 			<div className="login-form">
+
 				{(() => {
 					if (this.props.isAuthenticated) {
 						return (
-							<a>Sign Out</a>
+							<span className="form-actions"><a onClick={ this.onSignOutClick.bind(this) }>Sign Out</a></span>
 						) 
 					} else {
 						return (
-							<div>
-								<a>Sign In</a> | <a>Register</a>
-							</div>
+							<span className="form-actions">
+								<a onClick={ this.onSignInClick.bind(this) }>Sign In</a> | <a onClick={ this.onRegisterClick.bind(this) }>Register</a>
+							</span>
 						)
 					}
 				})()}
-				<div className="login-form-inner">
+				<div className={"login-form-inner" + ((this.state.modalOpen) ? ' open' : '')}>
 					<form>
+					{(this.props.isAuthenticating) ? <div className="loading"></div> : ''}
 						<input 
 							placeholder="email"
 							type="email"
@@ -59,7 +86,7 @@ export class LoginForm extends Component {
 
 							<button
 								type="submit"
-								onClick={this.onFormSubmit.bind(this)}>Submit</button>
+								onClick={this.onFormSubmit.bind(this)}>{(!this.state.register) ? 'Sign In' : 'Register'}</button>
 					</form>
 				</div>
 			</div>
