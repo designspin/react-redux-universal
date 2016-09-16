@@ -33,6 +33,7 @@
 	cursor: pointer;
 	padding: 0 0.5rem;
 	line-height: 44px;
+	color: white;
 }
 
 .login-form .form-actions a:hover {

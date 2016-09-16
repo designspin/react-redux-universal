@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import * as actionCreators from '../../actions';
 import { collectOrRender } from '../../utils/styleCollection';
 import styles from './login-form.css';
@@ -44,7 +45,9 @@ export class LoginForm extends Component {
 	}
 
 	onSignOutClick() {
-		
+		this.props.actions.logOutUser();
+		this.setState({'email': ''});
+		this.setState({'password': ''});
 	}
 
 	onCloseClick() {
@@ -67,7 +70,11 @@ export class LoginForm extends Component {
 				{(() => {
 					if (this.props.isAuthenticated) {
 						return (
-							<span className="form-actions"><a onClick={ this.onSignOutClick.bind(this) }>Sign Out</a></span>
+							<span className="form-actions">
+							<a onClick={ this.onSignOutClick.bind(this) }>Sign Out</a>
+							 | 
+							<Link to="/admin">Admin</Link>
+							</span>
 						) 
 					} else {
 						if(!this.state.modalOpen) {

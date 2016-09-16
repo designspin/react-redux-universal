@@ -3,6 +3,7 @@ import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER
 import axios from 'axios';
 
 export function loginUserSuccess(token) {
+	localStorage.setItem('token', token);
 	return {
 		type: LOGIN_USER_SUCCESS,
 		payload: {
@@ -12,6 +13,7 @@ export function loginUserSuccess(token) {
 }
 
 export function loginUserFailure(error) {
+	localStorage.removeItem('token');
 	return {
 		type: LOGIN_USER_FAILURE,
 		payload: {
@@ -28,6 +30,7 @@ export function loginUserRequest() {
 }
 
 export function logout() {
+	localStorage.removeItem('token');
 	return { 
 		type: LOGOUT_USER,
 	}
@@ -81,5 +84,11 @@ export function loginUser(email, password, register) {
 		.catch(error => {
 			dispatch(loginUserFailure(error));
 		})
+	}
+}
+
+export function logOutUser() {
+	return (dispatch) => {
+		dispatch(logout());
 	}
 }

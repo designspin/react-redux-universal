@@ -68,21 +68,21 @@
 
 	var _reactRedux = __webpack_require__(238);
 
-	var _reducers = __webpack_require__(249);
+	var _reducers = __webpack_require__(252);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _api = __webpack_require__(252);
+	var _api = __webpack_require__(255);
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _db = __webpack_require__(267);
+	var _db = __webpack_require__(270);
 
 	var _db2 = _interopRequireDefault(_db);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(268).load();
+	__webpack_require__(271).load();
 
 	var App = (0, _express2.default)();
 
@@ -138,11 +138,11 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jason/react-redux-universal/src/server.js');
+		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jasonfoster/universal-react/react-redux-universal/src/server.js');
 
-		__REACT_HOT_LOADER__.register(SERVER_IP, 'SERVER_IP', '/Users/jason/react-redux-universal/src/server.js');
+		__REACT_HOT_LOADER__.register(SERVER_IP, 'SERVER_IP', '/Users/jasonfoster/universal-react/react-redux-universal/src/server.js');
 
-		__REACT_HOT_LOADER__.register(SERVER_PORT, 'SERVER_PORT', '/Users/jason/react-redux-universal/src/server.js');
+		__REACT_HOT_LOADER__.register(SERVER_PORT, 'SERVER_PORT', '/Users/jasonfoster/universal-react/react-redux-universal/src/server.js');
 	})();
 
 	;
@@ -19810,6 +19810,12 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
+	var _admin = __webpack_require__(249);
+
+	var _admin2 = _interopRequireDefault(_admin);
+
+	var _AuthenticatedComponent = __webpack_require__(251);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var _default = _react2.default.createElement(
@@ -19819,7 +19825,12 @@
 			_reactRouter.Route,
 			{ path: '/', component: _app2.default },
 			_react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default }),
-			_react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default })
+			_react2.default.createElement(_reactRouter.Route, { path: '/about', component: (0, _AuthenticatedComponent.requireAuthentication)(_about2.default) })
+		),
+		_react2.default.createElement(
+			_reactRouter.Route,
+			{ path: '/admin', component: (0, _AuthenticatedComponent.requireAuthentication)(_admin2.default) },
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default })
 		)
 	);
 
@@ -19831,7 +19842,7 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/routes.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/routes.js');
 	})();
 
 	;
@@ -19918,9 +19929,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jason/react-redux-universal/src/shared/components/app/app.js');
+		__REACT_HOT_LOADER__.register(App, 'App', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/app/app.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/app/app.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/app/app.js');
 	})();
 
 	;
@@ -20060,9 +20071,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(Header, 'Header', '/Users/jason/react-redux-universal/src/shared/components/header/header.js');
+		__REACT_HOT_LOADER__.register(Header, 'Header', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/header.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/header/header.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/header.js');
 	})();
 
 	;
@@ -20098,13 +20109,13 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(collectOrRender, 'collectOrRender', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(collectOrRender, 'collectOrRender', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(renderStyles, 'renderStyles', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(renderStyles, 'renderStyles', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(hasDOM, 'hasDOM', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(hasDOM, 'hasDOM', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
 
-		__REACT_HOT_LOADER__.register(css, 'css', '/Users/jason/react-redux-universal/src/shared/utils/styleCollection.js');
+		__REACT_HOT_LOADER__.register(css, 'css', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/styleCollection.js');
 	})();
 
 	;
@@ -21393,6 +21404,8 @@
 
 	var _reactRedux = __webpack_require__(238);
 
+	var _reactRouter = __webpack_require__(162);
+
 	var _actions = __webpack_require__(239);
 
 	var actionCreators = _interopRequireWildcard(_actions);
@@ -21464,7 +21477,11 @@
 			}
 		}, {
 			key: 'onSignOutClick',
-			value: function onSignOutClick() {}
+			value: function onSignOutClick() {
+				this.props.actions.logOutUser();
+				this.setState({ 'email': '' });
+				this.setState({ 'password': '' });
+			}
 		}, {
 			key: 'onCloseClick',
 			value: function onCloseClick() {
@@ -21496,6 +21513,12 @@
 									'a',
 									{ onClick: _this2.onSignOutClick.bind(_this2) },
 									'Sign Out'
+								),
+								'|',
+								_react2.default.createElement(
+									_reactRouter.Link,
+									{ to: '/admin' },
+									'Admin'
 								)
 							);
 						} else {
@@ -21590,13 +21613,13 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(LoginForm, 'LoginForm', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(LoginForm, 'LoginForm', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(mapStateToProps, 'mapStateToProps', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(mapDispatchToProps, 'mapDispatchToProps', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/header/login_form.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/header/login_form.js');
 	})();
 
 	;
@@ -21629,6 +21652,7 @@
 	exports.clearStatusText = clearStatusText;
 	exports.clearErrors = clearErrors;
 	exports.loginUser = loginUser;
+	exports.logOutUser = logOutUser;
 
 	var _utils = __webpack_require__(240);
 
@@ -21641,6 +21665,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function loginUserSuccess(token) {
+		localStorage.setItem('token', token);
 		return {
 			type: _constants.LOGIN_USER_SUCCESS,
 			payload: {
@@ -21650,6 +21675,7 @@
 	}
 
 	function loginUserFailure(error) {
+		localStorage.removeItem('token');
 		return {
 			type: _constants.LOGIN_USER_FAILURE,
 			payload: {
@@ -21666,6 +21692,7 @@
 	}
 
 	function logout() {
+		localStorage.removeItem('token');
 		return {
 			type: _constants.LOGOUT_USER
 		};
@@ -21717,6 +21744,12 @@
 			});
 		};
 	}
+
+	function logOutUser() {
+		return function (dispatch) {
+			dispatch(logout());
+		};
+	}
 	;
 
 	(function () {
@@ -21724,19 +21757,21 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(loginUserSuccess, 'loginUserSuccess', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserSuccess, 'loginUserSuccess', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUserFailure, 'loginUserFailure', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserFailure, 'loginUserFailure', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUserRequest, 'loginUserRequest', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUserRequest, 'loginUserRequest', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(logout, 'logout', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(logout, 'logout', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(clearStatusText, 'clearStatusText', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(clearStatusText, 'clearStatusText', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(clearErrors, 'clearErrors', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(clearErrors, 'clearErrors', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 
-		__REACT_HOT_LOADER__.register(loginUser, 'loginUser', '/Users/jason/react-redux-universal/src/shared/actions/index.js');
+		__REACT_HOT_LOADER__.register(loginUser, 'loginUser', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
+
+		__REACT_HOT_LOADER__.register(logOutUser, 'logOutUser', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/actions/index.js');
 	})();
 
 	;
@@ -21796,13 +21831,13 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(createConstants, "createConstants", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(createConstants, "createConstants", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(createReducer, "createReducer", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(createReducer, "createReducer", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(checkHttpStatus, "checkHttpStatus", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(checkHttpStatus, "checkHttpStatus", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
 
-	    __REACT_HOT_LOADER__.register(parseJSON, "parseJSON", "/Users/jason/react-redux-universal/src/shared/utils/index.js");
+	    __REACT_HOT_LOADER__.register(parseJSON, "parseJSON", "/Users/jasonfoster/universal-react/react-redux-universal/src/shared/utils/index.js");
 	})();
 
 	;
@@ -21829,15 +21864,15 @@
 	    return;
 	  }
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_REQUEST, 'LOGIN_USER_REQUEST', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_REQUEST, 'LOGIN_USER_REQUEST', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_FAILURE, 'LOGIN_USER_FAILURE', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_FAILURE, 'LOGIN_USER_FAILURE', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGIN_USER_SUCCESS, 'LOGIN_USER_SUCCESS', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGIN_USER_SUCCESS, 'LOGIN_USER_SUCCESS', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(LOGOUT_USER, 'LOGOUT_USER', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(LOGOUT_USER, 'LOGOUT_USER', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
 
-	  __REACT_HOT_LOADER__.register(CLEAR_STATUS_TEXT, 'CLEAR_STATUS_TEXT', '/Users/jason/react-redux-universal/src/shared/constants/index.js');
+	  __REACT_HOT_LOADER__.register(CLEAR_STATUS_TEXT, 'CLEAR_STATUS_TEXT', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/constants/index.js');
 	})();
 
 	;
@@ -21874,7 +21909,7 @@
 
 
 	// module
-	exports.push([module.id, ".login-form{position:relative;margin-left:auto;font-size:1rem}.login-form-inner{position:absolute;display:none;right:0;top:64px;padding:1rem;background-color:#fff}.login-form-inner.open{display:block}.login-form .form-actions{display:inline-block;line-height:64px}.login-form .form-actions a{display:inline-block;cursor:pointer;padding:0 .5rem;line-height:44px}.login-form .form-actions a:hover{background-color:hsla(0,0%,100%,.3)}.login-form input{padding:.2rem;margin-bottom:1rem;max-width:100%}::input-placeholder{font-size:.2rem}.login-form button{width:100%;height:auto;padding:.5rem 2rem;border:1px solid $ds-grey;color:#fff;background-color:#445366}.login-form .loading{position:absolute;top:0;right:0;bottom:0;left:0;background:#fff url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%27120px%27%20height%3D%27120px%27%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20class%3D%22uil-ring-alt%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22none%22%20class%3D%22bk%22%3E%3C%2Frect%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23445366%22%20fill%3D%22none%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23e0f3fa%22%20fill%3D%22none%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%3E%3Canimate%20attributeName%3D%22stroke-dashoffset%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20from%3D%220%22%20to%3D%22502%22%3E%3C%2Fanimate%3E%3Canimate%20attributeName%3D%22stroke-dasharray%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20values%3D%22150.6%20100.4%3B1%20250%3B150.6%20100.4%22%3E%3C%2Fanimate%3E%3C%2Fcircle%3E%3C%2Fsvg%3E') no-repeat 50%;background-size:60px 60px}.login-form .error{color:red;background-color:rgba(255,0,0,.1);border:1px solid red;margin:.5rem 0;padding:.5rem;font-size:12px}", ""]);
+	exports.push([module.id, ".login-form{position:relative;margin-left:auto;font-size:1rem}.login-form-inner{position:absolute;display:none;right:0;top:64px;padding:1rem;background-color:#fff}.login-form-inner.open{display:block}.login-form .form-actions{display:inline-block;line-height:64px}.login-form .form-actions a{display:inline-block;cursor:pointer;padding:0 .5rem;line-height:44px;color:#fff}.login-form .form-actions a:hover{background-color:hsla(0,0%,100%,.3)}.login-form input{padding:.2rem;margin-bottom:1rem;max-width:100%}::input-placeholder{font-size:.2rem}.login-form button{width:100%;height:auto;padding:.5rem 2rem;border:1px solid $ds-grey;color:#fff;background-color:#445366}.login-form .loading{position:absolute;top:0;right:0;bottom:0;left:0;background:#fff url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%27120px%27%20height%3D%27120px%27%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20class%3D%22uil-ring-alt%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22none%22%20class%3D%22bk%22%3E%3C%2Frect%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23445366%22%20fill%3D%22none%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23e0f3fa%22%20fill%3D%22none%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%3E%3Canimate%20attributeName%3D%22stroke-dashoffset%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20from%3D%220%22%20to%3D%22502%22%3E%3C%2Fanimate%3E%3Canimate%20attributeName%3D%22stroke-dasharray%22%20dur%3D%222s%22%20repeatCount%3D%22indefinite%22%20values%3D%22150.6%20100.4%3B1%20250%3B150.6%20100.4%22%3E%3C%2Fanimate%3E%3C%2Fcircle%3E%3C%2Fsvg%3E') no-repeat 50%;background-size:60px 60px}.login-form .error{color:red;background-color:rgba(255,0,0,.1);border:1px solid red;margin:.5rem 0;padding:.5rem;font-size:12px}", ""]);
 
 	// exports
 
@@ -21920,19 +21955,44 @@
 		value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var About = function About() {
-		return _react2.default.createElement(
-			'div',
-			null,
-			'About Page'
-		);
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var About = function (_Component) {
+		_inherits(About, _Component);
+
+		function About() {
+			_classCallCheck(this, About);
+
+			return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+		}
+
+		_createClass(About, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					'About Page'
+				);
+			}
+		}]);
+
+		return About;
+	}(_react.Component);
+
+	;
 
 	var _default = About;
 	exports.default = _default;
@@ -21943,9 +22003,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(About, 'About', '/Users/jason/react-redux-universal/src/shared/components/about/about.js');
+		__REACT_HOT_LOADER__.register(About, 'About', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/about/about.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/about/about.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/about/about.js');
 	})();
 
 	;
@@ -21983,9 +22043,9 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(Home, 'Home', '/Users/jason/react-redux-universal/src/shared/components/home/home.js');
+		__REACT_HOT_LOADER__.register(Home, 'Home', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/home/home.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/components/home/home.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/home/home.js');
 	})();
 
 	;
@@ -22000,11 +22060,271 @@
 		value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _header = __webpack_require__(250);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _styleCollection = __webpack_require__(166);
+
+	var _index = __webpack_require__(274);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Admin = function (_React$Component) {
+		_inherits(Admin, _React$Component);
+
+		function Admin() {
+			_classCallCheck(this, Admin);
+
+			return _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).apply(this, arguments));
+		}
+
+		_createClass(Admin, [{
+			key: 'componentWillMount',
+			value: function componentWillMount() {
+				this.removeStyles = (0, _styleCollection.collectOrRender)(_index2.default);
+			}
+		}, {
+			key: 'componentWillUnmount',
+			value: function componentWillUnmount() {
+				this.removeStyles();
+			}
+		}, {
+			key: 'getChildContext',
+			value: function getChildContext() {
+				return {
+					rebass: {
+						fontSizes: [64, 48, 24, 18, 16, 14, 12]
+					}
+				};
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_header2.default, null),
+					this.props.children
+				);
+			}
+		}]);
+
+		return Admin;
+	}(_react2.default.Component);
+
+	Admin.childContextTypes = {
+		rebass: _react2.default.PropTypes.object
+	};
+
+	var _default = Admin;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(Admin, 'Admin', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/admin/index.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/admin/index.js');
+	})();
+
+	;
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(162);
+
+	var _rebass = __webpack_require__(273);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Header = function (_Component) {
+		_inherits(Header, _Component);
+
+		function Header() {
+			_classCallCheck(this, Header);
+
+			return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+		}
+
+		_createClass(Header, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					_rebass.Toolbar,
+					null,
+					_react2.default.createElement(
+						_rebass.NavItem,
+						{ is: 'a' },
+						'Posts'
+					),
+					_react2.default.createElement(
+						_rebass.NavItem,
+						{ is: 'a' },
+						'Pages'
+					),
+					_react2.default.createElement(_rebass.Space, { auto: true, x: 1 }),
+					_react2.default.createElement(
+						_rebass.NavItem,
+						{ is: 'a' },
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
+						)
+					)
+				);
+			}
+		}]);
+
+		return Header;
+	}(_react.Component);
+
+	var _default = Header;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(Header, 'Header', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/admin/header/index.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/components/admin/header/index.js');
+	})();
+
+	;
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	exports.requireAuthentication = requireAuthentication;
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(238);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function requireAuthentication(Component, FailingComponent) {
+		var AuthenticatedComponent = function (_React$Component) {
+			_inherits(AuthenticatedComponent, _React$Component);
+
+			function AuthenticatedComponent() {
+				_classCallCheck(this, AuthenticatedComponent);
+
+				return _possibleConstructorReturn(this, (AuthenticatedComponent.__proto__ || Object.getPrototypeOf(AuthenticatedComponent)).apply(this, arguments));
+			}
+
+			_createClass(AuthenticatedComponent, [{
+				key: 'render',
+				value: function render() {
+					return _react2.default.createElement(
+						'div',
+						null,
+						this.props.isAuthenticated === true ? _react2.default.createElement(Component, this.props) : FailingComponent ? _react2.default.createElement(FailingComponent, null) : _react2.default.createElement(
+							'p',
+							null,
+							'Please log in to view this content'
+						)
+					);
+				}
+			}]);
+
+			return AuthenticatedComponent;
+		}(_react2.default.Component);
+
+		var mapStateToProps = function mapStateToProps(state) {
+			return {
+				token: state.auth.token,
+				isAuthenticated: state.auth.isAuthenticated
+			};
+		};
+
+		return (0, _reactRedux.connect)(mapStateToProps)(AuthenticatedComponent);
+	}
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(requireAuthentication, 'requireAuthentication', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/containers/AuthenticatedComponent.js');
+	})();
+
+	;
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
 	var _redux = __webpack_require__(237);
 
-	var _reduxRouter = __webpack_require__(250);
+	var _reduxRouter = __webpack_require__(253);
 
-	var _auth = __webpack_require__(251);
+	var _auth = __webpack_require__(254);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -22024,21 +22344,21 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(rootReducer, 'rootReducer', '/Users/jason/react-redux-universal/src/shared/reducers/index.js');
+		__REACT_HOT_LOADER__.register(rootReducer, 'rootReducer', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/index.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/reducers/index.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/index.js');
 	})();
 
 	;
 
 /***/ },
-/* 250 */
+/* 253 */
 /***/ function(module, exports) {
 
 	module.exports = require("redux-router");
 
 /***/ },
-/* 251 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22101,25 +22421,25 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jason/react-redux-universal/src/shared/reducers/auth.js');
+		__REACT_HOT_LOADER__.register(initialState, 'initialState', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/auth.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/shared/reducers/auth.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/reducers/auth.js');
 	})();
 
 	;
 
 /***/ },
-/* 252 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var express = __webpack_require__(1);
 	var router = express.Router();
-	var bodyParser = __webpack_require__(253);
-	var passport = __webpack_require__(254);
-	var Auth = __webpack_require__(255);
-	var passportService = __webpack_require__(264);
+	var bodyParser = __webpack_require__(256);
+	var passport = __webpack_require__(257);
+	var Auth = __webpack_require__(258);
+	var passportService = __webpack_require__(267);
 
 	var requireAuth = passport.authenticate('jwt', { session: false });
 	var requireSignin = passport.authenticate('local', { session: false });
@@ -22138,39 +22458,39 @@
 	    return;
 	  }
 
-	  __REACT_HOT_LOADER__.register(router, 'router', '/Users/jason/react-redux-universal/src/server/routes/api.js');
+	  __REACT_HOT_LOADER__.register(router, 'router', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/routes/api.js');
 
-	  __REACT_HOT_LOADER__.register(requireAuth, 'requireAuth', '/Users/jason/react-redux-universal/src/server/routes/api.js');
+	  __REACT_HOT_LOADER__.register(requireAuth, 'requireAuth', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/routes/api.js');
 
-	  __REACT_HOT_LOADER__.register(requireSignin, 'requireSignin', '/Users/jason/react-redux-universal/src/server/routes/api.js');
+	  __REACT_HOT_LOADER__.register(requireSignin, 'requireSignin', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/routes/api.js');
 	})();
 
 	;
 
 /***/ },
-/* 253 */
+/* 256 */
 /***/ function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ },
-/* 254 */
+/* 257 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport");
 
 /***/ },
-/* 255 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var User = __webpack_require__(256);
-	var jwtSimple = __webpack_require__(259);
-	var config = __webpack_require__(260);
-	var crypto = __webpack_require__(261);
-	var mail = __webpack_require__(262);
-	var smtp = __webpack_require__(263);
+	var User = __webpack_require__(259);
+	var jwtSimple = __webpack_require__(262);
+	var config = __webpack_require__(263);
+	var crypto = __webpack_require__(264);
+	var mail = __webpack_require__(265);
+	var smtp = __webpack_require__(266);
 
 	function tokenForUser(user) {
 		var timestamp = new Date().getTime();
@@ -22280,19 +22600,19 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(tokenForUser, 'tokenForUser', '/Users/jason/react-redux-universal/src/server/controllers/authentication.js');
+		__REACT_HOT_LOADER__.register(tokenForUser, 'tokenForUser', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/controllers/authentication.js');
 	})();
 
 	;
 
 /***/ },
-/* 256 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mongoose = __webpack_require__(257);
-	var bcrypt = __webpack_require__(258);
+	var mongoose = __webpack_require__(260);
+	var bcrypt = __webpack_require__(261);
 	var Schema = mongoose.Schema;
 
 	var userSchema = new Schema({
@@ -22353,35 +22673,35 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(Schema, 'Schema', '/Users/jason/react-redux-universal/src/shared/models/user.js');
+		__REACT_HOT_LOADER__.register(Schema, 'Schema', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/models/user.js');
 
-		__REACT_HOT_LOADER__.register(userSchema, 'userSchema', '/Users/jason/react-redux-universal/src/shared/models/user.js');
+		__REACT_HOT_LOADER__.register(userSchema, 'userSchema', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/models/user.js');
 
-		__REACT_HOT_LOADER__.register(UserModel, 'UserModel', '/Users/jason/react-redux-universal/src/shared/models/user.js');
+		__REACT_HOT_LOADER__.register(UserModel, 'UserModel', '/Users/jasonfoster/universal-react/react-redux-universal/src/shared/models/user.js');
 	})();
 
 	;
 
 /***/ },
-/* 257 */
+/* 260 */
 /***/ function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ },
-/* 258 */
+/* 261 */
 /***/ function(module, exports) {
 
 	module.exports = require("bcrypt-nodejs");
 
 /***/ },
-/* 259 */
+/* 262 */
 /***/ function(module, exports) {
 
 	module.exports = require("jwt-simple");
 
 /***/ },
-/* 260 */
+/* 263 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22403,44 +22723,44 @@
 	;
 
 /***/ },
-/* 261 */
+/* 264 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-/* 262 */
+/* 265 */
 /***/ function(module, exports) {
 
 	module.exports = require("nodemailer");
 
 /***/ },
-/* 263 */
+/* 266 */
 /***/ function(module, exports) {
 
 	module.exports = require("nodemailer-smtp-transport");
 
 /***/ },
-/* 264 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _passport = __webpack_require__(254);
+	var _passport = __webpack_require__(257);
 
 	var _passport2 = _interopRequireDefault(_passport);
 
-	var _config = __webpack_require__(260);
+	var _config = __webpack_require__(263);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _user = __webpack_require__(256);
+	var _user = __webpack_require__(259);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _passportJwt = __webpack_require__(265);
+	var _passportJwt = __webpack_require__(268);
 
-	var _passportLocal = __webpack_require__(266);
+	var _passportLocal = __webpack_require__(269);
 
 	var _passportLocal2 = _interopRequireDefault(_passportLocal);
 
@@ -22497,31 +22817,31 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(localOptions, 'localOptions', '/Users/jason/react-redux-universal/src/server/services/passport.js');
+		__REACT_HOT_LOADER__.register(localOptions, 'localOptions', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/services/passport.js');
 
-		__REACT_HOT_LOADER__.register(localLogin, 'localLogin', '/Users/jason/react-redux-universal/src/server/services/passport.js');
+		__REACT_HOT_LOADER__.register(localLogin, 'localLogin', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/services/passport.js');
 
-		__REACT_HOT_LOADER__.register(jwtOptions, 'jwtOptions', '/Users/jason/react-redux-universal/src/server/services/passport.js');
+		__REACT_HOT_LOADER__.register(jwtOptions, 'jwtOptions', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/services/passport.js');
 
-		__REACT_HOT_LOADER__.register(jwtLogin, 'jwtLogin', '/Users/jason/react-redux-universal/src/server/services/passport.js');
+		__REACT_HOT_LOADER__.register(jwtLogin, 'jwtLogin', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/services/passport.js');
 	})();
 
 	;
 
 /***/ },
-/* 265 */
+/* 268 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport-jwt");
 
 /***/ },
-/* 266 */
+/* 269 */
 /***/ function(module, exports) {
 
 	module.exports = require("passport-local");
 
 /***/ },
-/* 267 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22530,19 +22850,19 @@
 		value: true
 	});
 
-	var _mongoose = __webpack_require__(257);
+	var _mongoose = __webpack_require__(260);
 
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(268).load();
+	__webpack_require__(271).load();
 
 	var CONNECTION = process.env.DB_CONNECTION_STRING;
 	var NAME = process.env.DB_NAME;
 
 	var _default = function _default() {
-		_mongoose2.default.Promise = __webpack_require__(269);
+		_mongoose2.default.Promise = __webpack_require__(272);
 		_mongoose2.default.connect(CONNECTION + ':' + NAME + '/' + NAME);
 
 		var db = _mongoose2.default.connection;
@@ -22563,26 +22883,63 @@
 			return;
 		}
 
-		__REACT_HOT_LOADER__.register(CONNECTION, 'CONNECTION', '/Users/jason/react-redux-universal/src/server/db.js');
+		__REACT_HOT_LOADER__.register(CONNECTION, 'CONNECTION', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/db.js');
 
-		__REACT_HOT_LOADER__.register(NAME, 'NAME', '/Users/jason/react-redux-universal/src/server/db.js');
+		__REACT_HOT_LOADER__.register(NAME, 'NAME', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/db.js');
 
-		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jason/react-redux-universal/src/server/db.js');
+		__REACT_HOT_LOADER__.register(_default, 'default', '/Users/jasonfoster/universal-react/react-redux-universal/src/server/db.js');
 	})();
 
 	;
 
 /***/ },
-/* 268 */
+/* 271 */
 /***/ function(module, exports) {
 
 	module.exports = require("dotenv");
 
 /***/ },
-/* 269 */
+/* 272 */
 /***/ function(module, exports) {
 
 	module.exports = require("bluebird");
+
+/***/ },
+/* 273 */
+/***/ function(module, exports) {
+
+	module.exports = require("rebass");
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	    var content = __webpack_require__(275);
+	    var insertCss = __webpack_require__(170);
+
+	    if (typeof content === 'string') {
+	      content = [[module.id, content, '']];
+	    }
+
+	    module.exports = content.locals || {};
+	    module.exports._getCss = function() { return content.toString(); };
+	    module.exports._insertCss = function(options) { return insertCss(content, options) };
+	  
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(169)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}body,html{width:100%;height:100%}body{font-family:sans-serif}*,:after,:before{box-sizing:border-box}", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

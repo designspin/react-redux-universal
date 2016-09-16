@@ -5,6 +5,7 @@ import rootReducer from './shared/reducers';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { loginUserSuccess } from './shared/actions';
 
 let initialState = window.__INITIAL_STATE_;
 
@@ -14,9 +15,13 @@ const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 let styles = document.getElementById('server-styles');
 styles.parentNode.removeChild(styles);
 
-
 ReactDOM.render(
 <Provider store={store}>
 	{routes}
 </Provider>, document.getElementById('app')
 );
+
+let token = localStorage.getItem('token');
+if (token != null) {
+	store.dispatch(loginUserSuccess(token));
+}
