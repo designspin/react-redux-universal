@@ -1,0 +1,77 @@
+@import '../../css/global.css';
+
+.login-form {
+	position: relative;
+	margin-left: auto;
+	font-size: 1rem;
+}
+
+.login-form-inner {
+	position: absolute;
+	display: none;
+	right: 0;
+	top: 64px;
+	padding: 1rem;
+	background-color: $ds-white;
+}
+
+.login-form-inner form {
+	
+}
+
+.login-form-inner.open {
+	display: block;
+}
+
+.login-form .form-actions {
+	display: inline-block;
+	line-height: 64px;
+}
+
+.login-form .form-actions a {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0 0.5rem;
+	line-height: 44px;
+	color: white;
+}
+
+.login-form .form-actions a:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.login-form input {
+	padding: 0.2rem;
+	margin-bottom: 1rem;
+	max-width: 100%;
+}
+
+::input-placeholder {
+	font-size: 0.2rem;
+}
+
+.login-form button {
+	width: 100%;
+	height: auto;
+	padding: 0.5rem 2rem;
+	border: 1px solid $ds-grey;
+	color: $ds-white;
+	background-color: $ds-blue;
+}
+
+.login-form .loading {
+	position: absolute;
+	top:0; right:0; bottom:0; left:0;
+	
+	background: #fff url('data:image/svg+xml;charset=UTF-8,$ajax-loader') no-repeat center center;
+	background-size: 60px 60px;
+}
+
+.login-form .error {
+	color: red;
+	background-color: rgba(255,0,0,0.1);
+	border: 1px solid red;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+	font-size: 12px;
+}

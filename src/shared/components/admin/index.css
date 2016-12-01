@@ -1,0 +1,17 @@
+@import '../../../../node_modules/normalize.css/normalize.css';
+@import '../../css/global.css';
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: sans-serif;
+	width: 100%;
+	height: 100%;
+}
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
