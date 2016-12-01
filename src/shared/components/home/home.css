@@ -1,5 +1,0 @@
-@import '../../css/global.css';
-
-.container {
-	@mixin container;
-}
