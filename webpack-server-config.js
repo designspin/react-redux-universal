@@ -1,4 +1,5 @@
 require('dotenv').config();
+var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
 
@@ -26,6 +27,12 @@ fs.readdirSync('node_modules')
 baseConfig.entry = (ROOT_PATH + '/server.js');
 
 baseConfig.target = 'node';
+
+baseConfig.plugins.push(
+	new webpack.DefinePlugin({
+		__BROWSER__: JSON.stringify(false)
+	})
+)
 
 baseConfig.output = {
 	path: ROOT_PATH,

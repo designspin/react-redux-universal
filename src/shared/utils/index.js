@@ -28,3 +28,7 @@ export function checkHttpStatus(response) {
 export function parseJSON(response) {
      return response.json();
 }
+
+export function isServer() {
+    return !(typeof window !== 'undefined' && window.document);
+}

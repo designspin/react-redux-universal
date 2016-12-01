@@ -1,5 +1,5 @@
 require('dotenv').config();
-//var webpack = require('webpack');
+var webpack = require('webpack');
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 var path = require('path');
 
@@ -8,16 +8,28 @@ var BUILD_PATH = path.resolve(ROOT_PATH, '../public');
 
 var baseConfig = require('./webpack.config.js');
 
-baseConfig.entry = [
+baseConfig.entry = {
 	//'webpack/hot/dev-server',
 	//'webpack-dev-server/client?http://localhost:3000',
-	(ROOT_PATH + '/client-render.js'),
-];
+	js: [
+		ROOT_PATH + '/client-render.js'
+	],
+	vendor: [
+		'react', 'react-dom', 'redux', 'redux-thunk', 'react-redux'
+	]
+};
 
-baseConfig.plugins = [
-	//new webpack.HotModuleReplacementPlugin(),
-	//new LiveReloadPlugin(),
-]
+baseConfig.plugins.push(
+	new webpack.optimize.CommonsChunkPlugin({
+		name: 'vendor',
+		minChunks: Infinity,
+		filename: 'vendor.bundle.js'
+	}),
+	new webpack.DefinePlugin({
+		__BROWSER__: JSON.stringify(true)
+	})
+);
+
 
 baseConfig.devServer = {
 	hot: true,

@@ -1,4 +1,8 @@
 import express from 'express';
+import session from 'express-session';
+//import cookieParser from 'cookie-parser';
+const MongoStore = require('connect-mongo')(session);
+import config from './server/config';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -10,23 +14,25 @@ import { renderStyles } from './shared/utils/styleCollection';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './shared/reducers';
+import { loginUserSuccess } from './shared/actions';
 
 import api from './server/routes/api';
 
 import database from './server/db';
 
-require('dotenv').load();
+const mongostoredata = new MongoStore({mongooseConnection: database()});
 
 const App = express();
 
-database();
+//database();
 
 App.use(express.static('public'));
+
+App.use(session({secret: config.secret, resave: false, saveUninitialized: true, store: mongostoredata }));
 
 App.use('/api', api);
 
 App.use((req, res) => {
-
 	const location = req.url;
 	const store = createStore(reducer);
 
@@ -45,6 +51,10 @@ App.use((req, res) => {
 		</Provider>
 		);
 
+		if(req.session.token) {
+			store.dispatch(loginUserSuccess(req.session.token));
+		}
+		
 		const initialState = store.getState();
 		const componentHTML = renderToString(InitialComponent);
 
@@ -64,6 +74,7 @@ App.use((req, res) => {
 			</head>
 			<body>
 				<div id="app">${componentHTML}</div>
+				<script type="application/javascript" src="vendor.bundle.js"></script>
 				<script type="application/javascript" src="app.js"></script>
 			</body>
 		</html>

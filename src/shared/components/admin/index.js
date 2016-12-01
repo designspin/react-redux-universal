@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './header/';
+import { requireAuthentication } from '../../containers/AuthenticatedComponent';
+
 import { collectOrRender } from '../../utils/styleCollection';
 import styles from './index.css';
 
@@ -35,4 +37,6 @@ Admin.childContextTypes = {
 	rebass: React.PropTypes.object
 };
 
-export default Admin;
+const WrappedComponent = requireAuthentication(Admin);
+
+module.exports = WrappedComponent;

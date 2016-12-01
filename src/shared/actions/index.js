@@ -3,7 +3,11 @@ import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER
 import axios from 'axios';
 
 export function loginUserSuccess(token) {
-	localStorage.setItem('token', token);
+
+	if (typeof localStorage !== 'undefined') {
+		localStorage.setItem('token', token);
+	}
+
 	return {
 		type: LOGIN_USER_SUCCESS,
 		payload: {
@@ -13,7 +17,10 @@ export function loginUserSuccess(token) {
 }
 
 export function loginUserFailure(error) {
-	localStorage.removeItem('token');
+	if (typeof localStorage !== 'undefined') {
+		localStorage.removeItem('token');
+	}
+
 	return {
 		type: LOGIN_USER_FAILURE,
 		payload: {
@@ -30,7 +37,11 @@ export function loginUserRequest() {
 }
 
 export function logout() {
-	localStorage.removeItem('token');
+	
+	if (typeof localStorage !== 'undefined') {
+		localStorage.removeItem('token');
+	}
+
 	return { 
 		type: LOGOUT_USER,
 	}
@@ -52,14 +63,15 @@ export function loginUser(email, password, register) {
 	let requestURL = '';
 
 	if(!register) {
-		requestURL = 'http://localhost:3000/api/signin';
+		requestURL = 'http://localhost:3000/api/signin'; // Needs to come from config
 	} else {
-		requestURL = 'http://localhost:3000/api/signup';
+		requestURL = 'http://localhost:3000/api/signup'; // Needs to come from config
 	}
 
 	return (dispatch) => {
 		dispatch(loginUserRequest())
 		return fetch(requestURL, {
+			credentials: 'same-origin',
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -88,7 +100,19 @@ export function loginUser(email, password, register) {
 }
 
 export function logOutUser() {
-	return (dispatch) => {
+
+	let requestURL = 'http://localhost:3000/api/signout';
+
+	return (dispatch) => fetch(requestURL, {
+		credentials: 'same-origin',
+		method: 'post',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+	.then(checkHttpStatus)
+	.then(response => {
 		dispatch(logout());
-	}
+	})
 }

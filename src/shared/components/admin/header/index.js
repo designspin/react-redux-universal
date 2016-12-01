@@ -9,7 +9,7 @@ export default class Header extends Component {
 				<NavItem is="a">Posts</NavItem>
 				<NavItem is="a">Pages</NavItem>
 				<Space auto x={1}/>
-				<NavItem is="a"><Link to="/">Home</Link></NavItem>
+				<NavItem to="/" is={Link}>Home</NavItem>
 			</Toolbar>
 		)
 	}

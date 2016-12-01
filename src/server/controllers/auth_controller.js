@@ -65,8 +65,18 @@ exports.forgot = function(req, res, next) {
 
 //Post Method for signin
 exports.signin = function(req, res, next) {
-	res.send({ token: tokenForUser(req.user)});
+	let usertoken = tokenForUser(req.user);
+	req.session.token = usertoken;
+	req.session.uid = req.user.id;
+	req.session.save();
+	console.log(req.session);
+	res.send({ token: usertoken});
 };
+
+exports.signout = function(req, res, next) {
+	delete req.session.token;
+	res.send({ success: 'You have sucessfully logged out'});
+}
 
 //Post Method for signup
 exports.signup = function(req, res, next) {
